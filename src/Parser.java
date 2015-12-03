@@ -1,10 +1,10 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class Parser 
 {
-    private HashMap<String, CommandFunction> commands;  // holds all valid command words
+    private HashMap<String, Command> commands;  // holds all valid command words
     private Scanner reader;         // source of command input
 
     /**
@@ -12,18 +12,16 @@ public class Parser
      */
     public Parser() 
     {
-        commands = new CommandWords();
+        commands = Command.getCommands();
         reader = new Scanner(System.in);
     }
 
     /**
      * @return The next command from the user.
      */
-    public Command getCommand() 
-    {
+    public boolean runNextCommand(Game game) {
         String inputLine;   // will hold the full input line
-        String word1 = null;
-        String word2 = null;
+        String[] args = null;
 
         System.out.print("> ");     // print prompt
 
@@ -31,21 +29,16 @@ public class Parser
 
         // Find up to two words on the line.
         Scanner tokenizer = new Scanner(inputLine);
-        if(tokenizer.hasNext()) {
-            word1 = tokenizer.next();      // get first word
-            if(tokenizer.hasNext()) {
-                word2 = tokenizer.next();      // get second word
-                // note: we just ignore the rest of the input line.
-            }
+        String cmd = tokenizer.next();
+        ArrayList<String> argsList = new ArrayList<String>();
+        while (tokenizer.hasNext()) {
+            argsList.add(tokenizer.next());
         }
-
-        // Now check whether this word is known. If so, create a command
-        // with it. If not, create a "null" command (for unknown command).
-        if(commands.isCommand(word1)) {
-            return new Command(word1, word2);
-        }
-        else {
-            return new Command(null, word2); 
-        }
+        tokenizer.close();
+        if (cmd.equals("quit")) return true;
+        
+        Command c = commands.get(cmd);
+        c.run(game, args);
+        return false;
     }
 }
