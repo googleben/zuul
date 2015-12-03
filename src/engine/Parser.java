@@ -1,3 +1,4 @@
+package engine;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -38,6 +39,7 @@ public class Parser
         if (cmd.equals("quit")) return true;
         
         Command c = commands.get(cmd);
+        if (game.getPlayer().getRoom().override.containsKey(cmd)) c = game.getPlayer().getRoom().override.get(cmd);
         c.run(game, args);
         return false;
     }

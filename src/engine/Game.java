@@ -1,3 +1,8 @@
+package engine;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * This class is the main class of the "World of Zuul" application.
  * "World of Zuul" is a very simple, text based adventure game. Users can walk
@@ -19,6 +24,7 @@ public class Game {
 
     private Parser parser;
     private Player player;
+    public static HashMap<String,Item> itemList = new HashMap<String,Item>();
 
     /**
      * Create the game and initialise its internal map.

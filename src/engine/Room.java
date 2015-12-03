@@ -1,3 +1,4 @@
+package engine;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -21,6 +22,7 @@ public class Room {
     public String description;
     public ArrayList<Command> commands;
     public HashMap<String, Room> rooms;
+    public HashMap<String, Command> override;
 
     /**
      * Create a room described "description". Initially, it has no exits.
@@ -32,6 +34,7 @@ public class Room {
     public Room(String description) {
         this.description = description;
         this.rooms = new HashMap<String, Room>();
+        this.override = new HashMap<String, Command>();
     }
 
     public Room travel(String dir) {

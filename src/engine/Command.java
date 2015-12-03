@@ -1,3 +1,4 @@
+package engine;
 import java.util.HashMap;
 
 
@@ -19,6 +20,7 @@ public class Command {
         HashMap<String, Command> ans = new HashMap<String, Command>();
 
         ans.put("move", new Command(Command::move, "move [direction]"));
+        ans.put("look", new Command(Command::look, "look"));
 
         return ans;
     }
@@ -41,6 +43,12 @@ public class Command {
         if (args.length != 0) return false;
         System.out.println(game.getPlayer().getRoom().getDescription());
         return true;
+    }
+    
+    public static boolean pickup(Game game, String... args) {
+    	if (args.length!=1) return false;
+    	System.out.println("You don't see a "+args[0]+" anywhere.");
+    	return true;
     }
 
 }

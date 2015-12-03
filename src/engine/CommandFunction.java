@@ -1,3 +1,4 @@
+package engine;
 @FunctionalInterface
 public interface CommandFunction {
     
