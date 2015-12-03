@@ -6,7 +6,7 @@ public class OpticalDriveRoom extends Room {
 
 	public OpticalDriveRoom(String description) {
 		super(description);
-		override.put("pickup", new Command(this::pickup, ""));
+		override.put("pickup", new Command(this::pickup, "pickup [item]"));
 	}
 	
 	public boolean pickup(Game g, String[] args) {

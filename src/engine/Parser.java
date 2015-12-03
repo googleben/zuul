@@ -36,6 +36,7 @@ public class Parser
             argsList.add(tokenizer.next());
         }
         tokenizer.close();
+        args = argsList.toArray(new String[0]);
         if (cmd.equals("quit")) return true;
         
         Command c = commands.get(cmd);

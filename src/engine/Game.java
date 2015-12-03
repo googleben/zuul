@@ -3,6 +3,9 @@ package engine;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import items.*;
+import rooms.*;
+
 /**
  * This class is the main class of the "World of Zuul" application.
  * "World of Zuul" is a very simple, text based adventure game. Users can walk
@@ -30,15 +33,17 @@ public class Game {
      * Create the game and initialise its internal map.
      */
     public Game() {
-        createRooms();
+        createWorld();
         parser = new Parser();
     }
 
     /**
-     * Create all the rooms and link their exits together.
+     * Creates all the rooms and items.
      */
-    private void createRooms() {
-
+    private void createWorld() {
+    	Item laser = new Laser();
+    	itemList.put("laser", laser);
+    	Room opticaldrive = new OpticalDriveRoom("You are in an optical drive. You think you can take the laser out of the drive.");
     }
 
     /**
