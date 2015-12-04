@@ -6,7 +6,7 @@ public class Copper extends Item {
 	
 	public Copper() {
 		this.name = "Copper Wire";
-		this.description = "A piece of copper wire from the power supply.";
+		this.description = "A piece of copper wire from the power supply. Part of the D-block on the periodic table.";
 	}
 	
 }

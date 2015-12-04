@@ -20,6 +20,4 @@ public class OpticalDriveRoom extends Room {
 		return true;
 	}
 	
-	
-	
 }
