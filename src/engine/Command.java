@@ -10,6 +10,7 @@ public class Command {
     public Command(CommandFunction function, String help) {
         this.function = function;
         this.help = help;
+        //testing github
     }
 
     public void run(Game game, String[] args) {
