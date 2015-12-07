@@ -10,7 +10,6 @@ public class SpeakerRoom extends Room {
     public SpeakerRoom(String description) {
         super(description);
         override.put("pickup", new Command(this::pickup,"pickup [item]"));
-        override.put("use", new Command(this::use, "use [item]"));
     }
 
     public boolean pickup(Game g, String args[]) {
@@ -24,15 +23,6 @@ public class SpeakerRoom extends Room {
         return true;
     }
     
-    public boolean use(Game g, String args[]) {
-    	if (args.length!=1) return false;
-    	if (!args[0].equals("copper")){
-            System.out.println("You don't use "+args[0]+ " here");
-            return false;
-        }
-    	else if (args[0].equals("copper"))
-    		System.out.println("You place the copper to complete the wiring making it possible to get inside.");
-    	return true;
-    }
+
 
 }
