@@ -76,5 +76,9 @@ public class Room {
         ans = ans.substring(0, ans.length() - 2);
         return ans;
     }
+    
+    public Room init(Game game) {
+    	return this;
+    }
 
 }
