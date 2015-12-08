@@ -23,6 +23,7 @@ public class Room {
     public ArrayList<Command> commands;
     public HashMap<String, Room> rooms;
     public HashMap<String, Command> override;
+    public boolean isLocked;
 
     /**
      * Create a room described "description". Initially, it has no exits.
@@ -35,10 +36,15 @@ public class Room {
         this.description = description;
         this.rooms = new HashMap<String, Room>();
         this.override = new HashMap<String, Command>();
+        this.isLocked = false;
     }
 
     public Room travel(String dir) {
         return rooms.get(dir);
+    }
+    
+    public Room init(Room r) {
+    	return this;
     }
 
     public boolean hasRoom(String dir) {

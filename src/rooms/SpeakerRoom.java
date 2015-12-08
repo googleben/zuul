@@ -10,6 +10,7 @@ public class SpeakerRoom extends Room {
     public SpeakerRoom(String description) {
         super(description);
         override.put("pickup", new Command(this::pickup,"pickup [item]"));
+        this.isLocked = true;
     }
 
     public boolean pickup(Game g, String args[]) {

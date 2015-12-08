@@ -7,6 +7,7 @@ public class SoundCardRoom extends Room {
 	public SoundCardRoom(String description) {
 		super(description);
 		override.put("use", new Command(this::use, "use [item]"));
+		this.isLocked = true;
 	}
 
 	public boolean use(Game g, String args[]) {

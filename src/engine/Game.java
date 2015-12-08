@@ -28,6 +28,7 @@ public class Game {
     private Parser parser;
     private Player player;
     public static HashMap<String,Item> itemList = new HashMap<String,Item>();
+    public static Game instance;
 
     /**
      * Create the game and initialise its internal map.
@@ -35,6 +36,7 @@ public class Game {
     public Game() {
         createWorld();
         parser = new Parser();
+        Game.instance=this;
     }
 
     /**
@@ -43,6 +45,12 @@ public class Game {
     private void createWorld() {
     	Item laser = new Laser();
     	itemList.put("laser", laser);
+    	Item upgradedLaser = new UpgradedLaser();
+    	itemList.put("upgradedLaser", upgradedLaser);
+    	Item capacitor = new Capacitor();
+    	itemList.put("capacitor", capacitor);
+    	Item copper = new Copper();
+    	itemList.put("copper", copper);
     	Room opticaldrive = new OpticalDriveRoom("You are in an optical drive. You think you can take the laser out of the drive.");
     }
 
