@@ -6,16 +6,9 @@ public class Player {
     
     private Room currRoom;
     private ArrayList<Item> items;
-    private Game game;
-    
-    public Player(Game game) {
-    	this.game = game;
-    	this.items = new ArrayList<Item>();
-    }
     
     public void move(String dir) {
-        this.currRoom = currRoom.travel(dir);
-        currRoom.init(game);
+        this.currRoom = currRoom.travel(dir).init(currRoom);
     }
     
     public Room getRoom() { return currRoom; }
@@ -23,7 +16,7 @@ public class Player {
     
     public void addItem(Item i) { items.add(i); }
     public void removeItem(Item i) { items.remove(i); }
-    public void upgradeItem(Item orgin, Item replacement){ items.set(items.indexOf(orgin), replacement);}
+    public void replaceItem(Item orgin, Item replacement) { items.set(items.indexOf(orgin), replacement);}
     public boolean hasItem(Item i) { return items.contains(i); }
 
 }

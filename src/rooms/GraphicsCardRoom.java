@@ -6,16 +6,21 @@ public class GraphicsCardRoom extends Room {
 
 	public GraphicsCardRoom(String description) {
 		super(description);
-		override.put("upgrade", new Command(this::upgrade, "upgrade [item]"));
+		this.isLocked = true;
 	}
 
-	public boolean upgrade(Game g, String args[]){
-		if (args.length!=1) return false;
-		if (args[0].equals("laser")){
-			g.getPlayer().upgradeItem(Game.itemList.get("laser"), Game.itemList.get("upgradeLaser"));
+	@Override
+	public Room init(Room r) {
+		if (Game.instance.getPlayer().hasItem(Game.itemList.get("laser"))) {
+			this.isLocked = false;
+			System.out.println(
+					"The Rogue SPU has been destroyed, and your laser has been upgraded to fight other things");
+			Game.instance.getPlayer().replaceItem(Game.itemList.get("laser"), Game.itemList.get("upgradedLaser"));
+			return rooms.get("GraphicsCardRoom");
+		} else {
+			System.out.println("You need the Laser to enter this room");	
+			return r;
 		}
-		System.out.println("You upgraded the laser.");
-		return true;
 	}
 
 }

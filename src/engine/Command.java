@@ -21,7 +21,6 @@ public class Command {
 
         ans.put("move", new Command(Command::move, "move [direction]"));
         ans.put("look", new Command(Command::look, "look"));
-        ans.put("use", new Command(Command::use, "use [item]"));
 
         return ans;
     }
@@ -49,12 +48,6 @@ public class Command {
     public static boolean pickup(Game game, String... args) {
     	if (args.length!=1) return false;
     	System.out.println("You don't see a "+args[0]+" anywhere.");
-    	return true;
-    }
-    
-    public static boolean use(Game game, String... args) {
-    	if (args.length!=1) return false;
-    	System.out.println("You don't use "+args[0]+ " here");
     	return true;
     }
 
