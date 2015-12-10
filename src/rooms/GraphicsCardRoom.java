@@ -16,8 +16,10 @@ public class GraphicsCardRoom extends Room {
 			System.out.println(
 					"The Rogue SPU has been destroyed, and your laser has been upgraded to fight other things");
 			Game.instance.getPlayer().replaceItem(Game.itemList.get("laser"), Game.itemList.get("upgradedLaser"));
+			return rooms.get("GraphicsCardRoom");
 		} else {
-
+			System.out.println("You need the Laser to enter this room");	
+			return r;
 		}
 	}
 

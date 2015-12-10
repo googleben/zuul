@@ -8,7 +8,7 @@ public class Player {
     private ArrayList<Item> items;
     
     public void move(String dir) {
-        this.currRoom = currRoom.travel(dir).init();
+        this.currRoom = currRoom.travel(dir).init(currRoom);
     }
     
     public Room getRoom() { return currRoom; }
