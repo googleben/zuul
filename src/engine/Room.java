@@ -24,6 +24,7 @@ public class Room {
     public HashMap<String, Room> rooms;
     public HashMap<String, Command> override;
     public boolean isLocked;
+    public HashMap<String, Item> items;
 
     /**
      * Create a room described "description". Initially, it has no exits.
@@ -36,6 +37,7 @@ public class Room {
         this.description = description;
         this.rooms = new HashMap<String, Room>();
         this.override = new HashMap<String, Command>();
+        items = new HashMap<String, Item>();
         this.isLocked = false;
     }
 
@@ -72,15 +74,32 @@ public class Room {
      * @return The description of the room.
      */
     public String getDescription() {
-        return description + "\n" + getExitString();
+        return description + "\n" + getDynamicDescription();
     }
 
-    public String getExitString() {
+    public String getDynamicDescription() {
         String ans = "Exits: ";
         for (String s : rooms.keySet())
             ans += s + ", ";
         ans = ans.substring(0, ans.length() - 2);
+        if (items.size()!=0) {
+            ans+="\nYou see ";
+            for (Item i : items.values()) ans+="a "+i.name+", ";
+            ans = ans.substring(0,ans.length()-2);
+        }
         return ans;
     }
+    
+    public boolean containsItem(String i) {
+        return items.containsKey(i);
+    }
+    public Item removeItem(String i) {
+        return items.remove(i);
+    }
+    public void addItem(String s, Item i) {
+        items.put(s,i);
+    }
+    
+    public void makeExits() {}
 
 }

@@ -4,8 +4,10 @@ import engine.*;
 
 public class GraphicsCardRoom extends Room {
 
+    static String desc = "";
+    
 	public GraphicsCardRoom(String description) {
-		super(description);
+		super(desc);
 		this.isLocked = true;
 	}
 

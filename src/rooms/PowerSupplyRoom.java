@@ -2,24 +2,23 @@ package rooms;
 
 import engine.*;
 
-/**
- * Created by Rohith on 12/3/15.
- */
 public class PowerSupplyRoom extends Room {
 
+    static String desc = "";
+    
     public PowerSupplyRoom(String description) {
-        super(description);
+        super(desc);
         override.put("pickup", new Command(this::pickup,"pickup [item]"));
         this.isLocked = true;
     }
 
-    public boolean pickup(Game g, String args[]) {
+    public boolean pickup(String args[]) {
         if (args.length!=1) return false;
         if (args[0].equals("copper")){
             System.out.println("You don't see a "+args[0]+ " anywhere");
             return true;
         }
-        g.getPlayer().addItem(Game.itemList.get("copper"));
+        Game.instance.getPlayer().addItem(Game.itemList.get("copper"));
         System.out.println("You picked up the copper.");
         return true;
     }

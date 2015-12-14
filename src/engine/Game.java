@@ -1,6 +1,5 @@
 package engine;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import items.*;
@@ -28,7 +27,9 @@ public class Game {
     private Parser parser;
     private Player player;
     public static HashMap<String,Item> itemList = new HashMap<String,Item>();
+    public static HashMap<String,Room> roomList = new HashMap<String,Room>();
     public static Game instance;
+    public static boolean run = true;
 
     /**
      * Create the game and initialise its internal map.
@@ -52,6 +53,9 @@ public class Game {
     	Item copper = new Copper();
     	itemList.put("copper", copper);
     	Room opticaldrive = new OpticalDriveRoom("You are in an optical drive. You think you can take the laser out of the drive.");
+    	roomList.put("opticaldrive", opticaldrive);
+    	
+    	for (Room r : roomList.values()) r.makeExits();
     }
 
     /**
@@ -63,8 +67,8 @@ public class Game {
         // Enter the main command loop. Here we repeatedly read commands and
         // execute them until the game is over.
 
-        while (1 != 0) {
-            if (parser.runNextCommand(this)) break;
+        while (run) {
+            if (parser.runNextCommand()) break;
         }
         System.out.println("Thank you for playing.  Good bye.");
     }

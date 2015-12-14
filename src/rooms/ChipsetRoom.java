@@ -3,9 +3,11 @@ package rooms;
 import engine.*;
 
 public class ChipsetRoom extends Room {
-
-	public ChipsetRoom(String description) {
-		super(description);
+    
+    static String desc = "";
+    
+	public ChipsetRoom() {
+		super(desc);
 		// TODO Auto-generated constructor stub
 	}
 	

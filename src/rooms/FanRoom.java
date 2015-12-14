@@ -4,8 +4,10 @@ import engine.*;
 
 public class FanRoom extends Room{
 
-	public FanRoom(String description) {
-		super(description);
+    static String desc = "";
+    
+	public FanRoom() {
+		super(desc);
 		// TODO Auto-generated constructor stub
 	}
 	

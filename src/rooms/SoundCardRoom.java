@@ -4,8 +4,10 @@ import engine.*;
 
 public class SoundCardRoom extends Room {
 
+    static String desc = "";
+    
 	public SoundCardRoom(String description) {
-		super(description);
+		super(desc);
 		override.put("use", new Command(this::use, "use [item]"));
 		this.isLocked = true;
 	}
@@ -23,14 +25,15 @@ public class SoundCardRoom extends Room {
 		return r;
 	}
 	
-	public boolean use(Game g, String args[]) {
+	public boolean use(String args[]) {
 		if (args.length!=1) return false;
 		if (!args[0].equals("copper")){
 			System.out.println("You don't use "+args[0]+ " here");
-			return false;
+		} else if (args[0].equals("copper")) {
+		    if (!Game.instance.getPlayer().hasItem(Game.itemList.get("copper")));
+			System.out.println("You place the copper to complete the wiring making it possible to get inside the speaker.");
+			Game.roomList.get("speaker").isLocked = false;
 		}
-		else if (args[0].equals("copper"))
-			System.out.println("You place the copper to complete the wiring making it possible to get inside.");
 		return true;
 	}
 

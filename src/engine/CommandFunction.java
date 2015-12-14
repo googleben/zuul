@@ -8,7 +8,7 @@ public interface CommandFunction {
      * @param args command arguments
      * @return returns false if command is incorrectly used, true otherwise
      */
-    public boolean run(Game game, String... args);
+    public boolean run(String... args);
     
 }
 

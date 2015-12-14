@@ -20,7 +20,7 @@ public class Parser
     /**
      * @return The next command from the user.
      */
-    public boolean runNextCommand(Game game) {
+    public boolean runNextCommand() {
         String inputLine;   // will hold the full input line
         String[] args = null;
 
@@ -40,8 +40,8 @@ public class Parser
         if (cmd.equals("quit")) return true;
         
         Command c = commands.get(cmd);
-        if (game.getPlayer().getRoom().override.containsKey(cmd)) c = game.getPlayer().getRoom().override.get(cmd);
-        c.run(game, args);
+        if (Game.instance.getPlayer().getRoom().override.containsKey(cmd)) c = Game.instance.getPlayer().getRoom().override.get(cmd);
+        c.run(args);
         return false;
     }
 }
