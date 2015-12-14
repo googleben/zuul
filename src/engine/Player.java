@@ -7,6 +7,11 @@ public class Player {
     private Room currRoom;
     private ArrayList<Item> items;
     
+    public Player(Room room) {
+        currRoom = room;
+        this.items = new ArrayList<Item>();
+    }
+    
     public void move(String dir) {
         this.currRoom = currRoom.travel(dir).init(currRoom);
     }

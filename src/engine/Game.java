@@ -30,6 +30,10 @@ public class Game {
     public static HashMap<String,Room> roomList = new HashMap<String,Room>();
     public static Game instance;
     public static boolean run = true;
+    
+    public static void main(String... args) {
+        new Game().play();
+    }
 
     /**
      * Create the game and initialise its internal map.
@@ -52,10 +56,13 @@ public class Game {
     	itemList.put("capacitor", capacitor);
     	Item copper = new Copper();
     	itemList.put("copper", copper);
-    	Room opticaldrive = new OpticalDriveRoom("You are in an optical drive. You think you can take the laser out of the drive.");
+    	Room opticaldrive = new OpticalDriveRoom();
     	roomList.put("opticaldrive", opticaldrive);
+    	Room satahub = new SATAHub();
+    	roomList.put("satahub", satahub);
     	
     	for (Room r : roomList.values()) r.makeExits();
+    	player = new Player(opticaldrive);
     }
 
     /**

@@ -21,6 +21,7 @@ public class Command {
         HashMap<String, Command> ans = new HashMap<String, Command>();
 
         ans.put("move", new Command(Command::move, "move <direction>"));
+        ans.put("go", new Command(Command::move, "go <direction>"));
         ans.put("look", new Command(Command::look, "look"));
         ans.put("pickup", new Command(Command::pickup, "pickup <item>"));
         ans.put("help", new Command(Command::help, "help [command]"));
@@ -30,7 +31,7 @@ public class Command {
     }
     
     public static boolean help(String... args) {
-        if (args.length!=1 || args.length!=0) return false;
+        if (!(args.length==1 || args.length==0)) return false;
         if (args.length==1) {
             if (!commands.containsKey(args[0])) {
                 System.out.println(args[0]+" is not a command!");

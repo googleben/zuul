@@ -30,10 +30,10 @@ public class Parser
 
         // Find up to two words on the line.
         Scanner tokenizer = new Scanner(inputLine);
-        String cmd = tokenizer.next();
+        String cmd = tokenizer.next().toLowerCase();
         ArrayList<String> argsList = new ArrayList<String>();
         while (tokenizer.hasNext()) {
-            argsList.add(tokenizer.next());
+            argsList.add(tokenizer.next().toLowerCase());
         }
         tokenizer.close();
         args = argsList.toArray(new String[0]);
@@ -41,7 +41,9 @@ public class Parser
         
         Command c = commands.get(cmd);
         if (Game.instance.getPlayer().getRoom().override.containsKey(cmd)) c = Game.instance.getPlayer().getRoom().override.get(cmd);
-        c.run(args);
+        if (c==null) {
+            System.out.println("\"" + cmd + "\" is an invalid command. For a list of commands, type \"help\".");
+        } else c.run(args);
         return false;
     }
 }
