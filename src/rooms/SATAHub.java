@@ -11,7 +11,8 @@ public class SATAHub extends Room {
 	}
 	
 	public void makeExits() {
-	    this.rooms.put("north",Game.roomList.get("opticaldrive"));
+	    this.rooms.put("up",Game.roomList.get("opticaldrive"));
+	    rooms.put("south", Game.roomList.get("chipset"));
 	}
 	
 }

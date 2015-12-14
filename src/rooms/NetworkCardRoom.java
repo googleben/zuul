@@ -4,27 +4,19 @@ import engine.*;
 
 public class NetworkCardRoom extends Room {
 
-    static String desc = "";
+    static String desc = "There seems to be an ethernet port and wireless receiver has to be the Network card. Sadly it’s missing a capacitor so you're stuck in here for now.";
     
     public boolean canLeave;
     
-	public NetworkCardRoom(String description) {
+	public NetworkCardRoom() {
 		super(desc);
-		override.put("use", new Command(this::use, "use [item]"));
 		override.put("leave", new Command(this::leave, "leave"));
+		use.put(Game.itemList.get("capacitor"), () -> {
+		    System.out.println("You place the capacitor to complete the wiring making it possible to leave the computer.");
+            canLeave = true;
+		    return true;
+		});
 		this.canLeave = false;
-	}
-
-	public boolean use(String[] args) {
-		if (args.length!=1) return false;
-		if (!args[0].equals("capacitor")){
-			System.out.println("You don't use "+args[0]+ " here");
-			return false;
-		}
-		else if (args[0].equals("capacitor")) {
-			System.out.println("You place the capacitor to complete the wiring making it possible to leave the computer.");
-		}
-		return true;
 	}
 	
 	public boolean leave(String[] args) {
@@ -34,6 +26,10 @@ public class NetworkCardRoom extends Room {
 	        Game.run = false;
 	    } else System.out.println("The network card is missing a capacitor; you can't leave.");
 	    return true;
+	}
+	
+	public void makeExits() {
+	    rooms.put("west", Game.roomList.get("pciehub"));
 	}
 
 }

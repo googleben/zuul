@@ -7,25 +7,24 @@ import engine.*;
  */
 public class SpeakerRoom extends Room {
 
-    static String desc = "";
+    static String desc = "OH NO CANCER IS EVERYWHERE, it has to be a Beats Speaker … smh. There seems to be a capacitor lying around.";
     
-    public SpeakerRoom(String description) {
+    public SpeakerRoom() {
         super(desc);
-        override.put("pickup", new Command(this::pickup,"pickup [item]"));
+        items.put("capacitor", Game.itemList.get("capacitor"));
         this.isLocked = true;
     }
-
-    public boolean pickup(String args[]) {
-        if (args.length!=1) return false;
-        if (args[0].equals("capacitor")){
-            System.out.println("You don't see a "+args[0]+ " anywhere");
-            return true;
+    
+    public Room init(Room r) {
+        if (isLocked) {
+            System.out.println("The connection to the speakers is missing - You need some copper!");
+            return r;
         }
-        Game.instance.getPlayer().addItem(Game.itemList.get("capacitor"));
-        System.out.println("You picked up the capacitor.");
-        return true;
+        return this;
     }
     
-
+    public void makeExits() {
+        rooms.put("west", Game.roomList.get("soundcard"));
+    }
 
 }

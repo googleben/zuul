@@ -24,6 +24,7 @@ public class Command {
         ans.put("go", new Command(Command::move, "go <direction>"));
         ans.put("look", new Command(Command::look, "look"));
         ans.put("pickup", new Command(Command::pickup, "pickup <item>"));
+        ans.put("use", new Command(Command::use, "use <item>"));
         ans.put("help", new Command(Command::help, "help [command]"));
         
         Command.commands = ans;
@@ -50,8 +51,12 @@ public class Command {
             System.out.println("You cannot move " + dir + ".");
             return true;
         }
-        player.move(dir);
-        System.out.println(player.getRoom().getDescription());
+        Game.instance.getPlayer().move(dir);
+        System.out.println(Game.
+                instance
+                .getPlayer()
+                .getRoom()
+                .getDescription());
 
         return true;
     };
@@ -69,6 +74,18 @@ public class Command {
     	    System.out.println("You pick up the "+args[0]+".");
     	} else System.out.println("You don't see a "+args[0]+" anywhere.");
     	return true;
+    }
+    
+    public static boolean use(String... args) {
+        if (args.length!=1) return false;
+        if (!Game.instance.getPlayer().hasItem(Game.itemList.get(args[0]))) {
+            System.out.println("You don't have a(n) "+args[0]+"!");
+        } else {
+            if (Game.instance.getPlayer().getRoom().use.containsKey(Game.itemList.get(args[0]))) {
+                Game.instance.getPlayer().getRoom().use.get(Game.itemList.get(args[0])).get();
+            } else System.out.println("You don't use that here!");
+        }
+        return true;
     }
 
 }

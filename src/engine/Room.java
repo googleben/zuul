@@ -1,6 +1,8 @@
 package engine;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 
 /**
@@ -25,6 +27,7 @@ public class Room {
     public HashMap<String, Command> override;
     public boolean isLocked;
     public HashMap<String, Item> items;
+    public HashMap<Item, Supplier<Boolean>> use;
 
     /**
      * Create a room described "description". Initially, it has no exits.
@@ -38,6 +41,7 @@ public class Room {
         this.rooms = new HashMap<String, Room>();
         this.override = new HashMap<String, Command>();
         items = new HashMap<String, Item>();
+        this.use = new HashMap<Item, Supplier<Boolean>>();
         this.isLocked = false;
     }
 

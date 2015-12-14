@@ -51,15 +51,34 @@ public class Game {
     	Item laser = new Laser();
     	itemList.put("laser", laser);
     	Item upgradedLaser = new UpgradedLaser();
-    	itemList.put("upgradedLaser", upgradedLaser);
+    	itemList.put("upgradedlaser", upgradedLaser);
     	Item capacitor = new Capacitor();
     	itemList.put("capacitor", capacitor);
     	Item copper = new Copper();
     	itemList.put("copper", copper);
+    	
     	Room opticaldrive = new OpticalDriveRoom();
     	roomList.put("opticaldrive", opticaldrive);
     	Room satahub = new SATAHub();
     	roomList.put("satahub", satahub);
+    	Room chipset = new ChipsetRoom();
+    	roomList.put("chipset", chipset);
+    	Room cpu = new CPURoom();
+    	roomList.put("cpu", cpu);
+    	Room graphicscard = new GraphicsCardRoom();
+    	roomList.put("graphicscard", graphicscard);
+    	Room networkcard = new NetworkCardRoom();
+    	roomList.put("networkcard", networkcard);
+    	Room pciehub = new PCIeHubRoom();
+    	roomList.put("pciehub",pciehub);
+    	Room powersupply = new PowerSupplyRoom();
+    	roomList.put("powersupply",powersupply);
+    	Room soundcard = new SoundCardRoom();
+    	roomList.put("soundcard",soundcard);
+    	Room speaker = new SpeakerRoom();
+    	roomList.put("speaker", speaker);
+    	
+    	
     	
     	for (Room r : roomList.values()) r.makeExits();
     	player = new Player(opticaldrive);
